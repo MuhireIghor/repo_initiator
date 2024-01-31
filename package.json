@@ -1,0 +1,30 @@
+{
+  "name": "repoinitiator",
+  "version": "1.0.0",
+  "description": "A simple github repository initiator",
+  "main": "cli.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pub": "npm version major & npm publish"
+  },
+  "bin": {
+    "repoinitiator": "./index.sh"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MuhireIghor/repo_initiator.git"
+  },
+  "keywords": [
+    "auto-repo-initiator",
+    "repo-initiator",
+    "git-init"
+  ],
+  "author": "Muhire Ighor",
+  "license": "ISC",
+  "dependencies": {
+    "boxen": "^7.1.1",
+    "chalk": "^5.3.0",
+    "clear": "^0.1.0"
+  }
+}
