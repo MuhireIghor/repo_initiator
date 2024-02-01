@@ -32,7 +32,7 @@ async function main() {
 
     const { githubUsername, githubPersonalAccessToken, repositoryName, projectDirectory } = answers;
 
-    const command = process.platform === 'winn32' || 'win64' ? `./index.bat "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${projectDirectory}"` : `./index.sh "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${projectDirectory}"`;
+    const command = process.platform === 'winn32' || 'win64' ? `index.bat "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${projectDirectory}"` : `index.sh "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${projectDirectory}"`;
 
     exec(command, function (err, stdout, stderr) {
         if (err) {
