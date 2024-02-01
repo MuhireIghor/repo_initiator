@@ -20,8 +20,13 @@
 ```bash
  npm install repoinitiator
  ```
+4.Execute the package
+```bash
+ npx repoinitiator
+ ```
 
-4.Answer all the prompts and then the repository will be successfully createed
+
+5.Answer all the prompts and then the repository will be successfully createed
 
 
 <b>Happy Coding</b>
