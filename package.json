@@ -1,6 +1,6 @@
 {
   "name": "repoinitiator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A simple github repository initiator",
   "main": "cli.js",
   "scripts": {
