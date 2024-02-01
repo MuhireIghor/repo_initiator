@@ -1,16 +1,13 @@
 #!/bin/bash
 
-read -rp "Enter your github username: " github_username
-read -rp "Enter your github personal access token: " github_personal_access_token
-read -rp "Enter your repository name: " repository_name
-read -rp "Enter your project directory: " project_directory
+    githubUsername=$1
+    githubPersonalAccessToken=$2
+    repositoryName=$3
+    projectDirectory=$4
+
 repo_Initiator (){
-    local githubUsername=$github_username
-    local githubPersonalAccessToken=$github_personal_access_token
-    local repositoryName=$repository_name
-    local projectDirectory=$project_directory
     # Local folder information
-    local_folder="${project_directory}"
+    local_folder="{$projectDirectory}"
 
     #GitHub API URL
     github_api_url="https://api.github.com/user/repos"
@@ -43,7 +40,8 @@ repo_Initiator (){
     echo "Task completed successfully."
 
 }
-repo_Initiator
+repo_Initiator "$githubUsername" "$githubPersonalAccessToken" "$repositoryName" "$projectDirectory"
+
 
 
 
