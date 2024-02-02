@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/env bash
 
     githubUsername=$1
     githubPersonalAccessToken=$2
