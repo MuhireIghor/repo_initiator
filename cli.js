@@ -31,8 +31,15 @@ async function main() {
     ]);
 
     const { githubUsername, githubPersonalAccessToken, repositoryName, projectDirectory } = answers;
+    let command;
+    if(process.platform == 'linux'){
+        command = `./index.sh "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${projectDirectory}"`;
+    }
+    else{
+        command = `./index.bat "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${projectDirectory}"`;
+    }
 
-    const command = process.platform === 'win32' || 'win64' ? `index.bat "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${projectDirectory}"` : `index.sh "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${projectDirectory}"`;
+    console.log(process.platform)
 
     exec(command, function (err, stdout, stderr) {
         if (err) {
