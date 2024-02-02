@@ -7,7 +7,7 @@
 
 repo_Initiator (){
     # Local folder information
-    local_folder="{$projectDirectory}"
+    local_folder="$projectDirectory"
 
     #GitHub API URL
     github_api_url="https://api.github.com/user/repos"
