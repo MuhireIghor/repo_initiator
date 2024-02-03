@@ -2,13 +2,12 @@
   "name": "repoinitiator",
   "version": "2.0.2",
   "description": "A simple github repository initiator",
-  "main": "cli.js",
+  "main": "./bin/repoinitiator.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "pub": "npm version major & npm publish"
   },
   "bin": {
-    "repoinitiator": "./cli.js"
+    "repoinitiator": "./bin/repoinitiator.js"
   },
   "type": "module",
   "repository": {
