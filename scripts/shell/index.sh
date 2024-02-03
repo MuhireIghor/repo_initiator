@@ -23,9 +23,11 @@ repo_Initiator (){
         exit 1
     fi
 
-    # Create a local folder
-    echo "Creating a local folder..."
-    mkdir "$local_folder"
+    if [ ! -d "$local_folder" ]; then
+        # Create a local folder
+        echo "Creating a local folder..."
+        mkdir -p "$local_folder"
+    fi
 
     # Initialize the local repository
     echo "Initializing the local repository..."
@@ -41,7 +43,3 @@ repo_Initiator (){
 
 }
 repo_Initiator "$githubUsername" "$githubPersonalAccessToken" "$repositoryName" "$projectDirectory"
-
-
-
-
