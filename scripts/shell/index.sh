@@ -22,7 +22,6 @@ repo_Initiator() {
         "$github_api_url" \
         -d "{\"name\": \"$repositoryName\"}")
 
-    echo "$response"
     repo_link="https://github.com/$githubUsername/$repositoryName.git"
 
     # Check if the repository creation was successful

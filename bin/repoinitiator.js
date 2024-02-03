@@ -87,14 +87,11 @@ program
     }
  
     exec(command, function (err, stdout, stderr) {
-      console.log(import.meta.dirname);
+      
       if (err) {
         console.error("Error executing shell script:", err);
         return;
-      } else if (stderr) {
-        console.error("Shell script errors:", stderr);
-        return;
-      }
+      } 
       console.log(stdout);
       console.log(
         boxen("Made with love by <MuhireIghor />", {
