@@ -1,26 +1,26 @@
 #!/bin/env bash
 
-    githubUsername=$1
-    githubPersonalAccessToken=$2
-    repositoryName=$3
-    projectDirectory=$4
+githubUsername=$1
+githubPersonalAccessToken=$2
+repositoryName=$3
+projectDirectory=$4
 
-repo_Initiator (){
+repo_Initiator() {
     # Local folder information
     local_folder="$projectDirectory"
 
-    #GitHub API URL
+    # GitHub API URL
     github_api_url="https://api.github.com/user/repos"
 
     # Create a new repository on GitHub
     echo "Creating a new repository on GitHub..."
-response=$(curl -L \
-  -X POST \
-  -H "Accept: application/vnd.github+json" \
-  -H "Authorization: Bearer $githubPersonalAccessToken" \
-  -H "X-GitHub-Api-Version: 2022-11-28" \
-  https://api.github.com/user/repos \
-  -d "{\"name\": \"$repositoryName\"}")
+    response=$(curl -L \
+        -X POST \
+        -H "Accept: application/vnd.github+json" \
+        -H "Authorization: Bearer $githubPersonalAccessToken" \
+        -H "X-GitHub-Api-Version: 2022-11-28" \
+        "$github_api_url" \
+        -d "{\"name\": \"$repositoryName\"}")
 
     echo "$response"
     repo_link="https://github.com/$githubUsername/$repositoryName.git"
@@ -48,6 +48,6 @@ response=$(curl -L \
     git remote add origin "$repo_link"
 
     echo "Task completed successfully."
-
 }
+
 repo_Initiator "$githubUsername" "$githubPersonalAccessToken" "$repositoryName" "$projectDirectory"
