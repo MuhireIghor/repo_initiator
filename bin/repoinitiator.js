@@ -79,15 +79,15 @@ program
     let command;
 
     if (process.platform == "linux") {
-      const shell_path = path.join(process.cwd(), "../scripts/shell/index.sh");
-      const batch_path = path.join(process.cwd(), "../scripts/batch/index.bat");
+      const shell_path = path.join(import.meta.dirname, "../scripts/shell/index.sh");
+      const batch_path = path.join(import.meta.dirname, "../scripts/batch/index.bat");
       command = `${shell_path} "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${local_repo_dir}"`;
     } else {
       command = `${batch_path} "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${local_repo_dir}"`;
     }
-
+ 
     exec(command, function (err, stdout, stderr) {
-      console.log(process.cwd());
+      console.log(import.meta.dirname);
       if (err) {
         console.error("Error executing shell script:", err);
         return;
