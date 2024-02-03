@@ -79,9 +79,9 @@ program
     let command;
 
     if (process.platform == "linux") {
-      command = `../scripts/shell/index.sh "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${local_repo_dir}"`;
+      command = `~/scripts/shell/index.sh "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${local_repo_dir}"`;
     } else {
-      command = `../scripts/batch/index.bat "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${local_repo_dir}"`;
+      command = `~/scripts/batch/index.bat "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${local_repo_dir}"`;
     }
 
     exec(command, function (err, stdout, stderr) {
