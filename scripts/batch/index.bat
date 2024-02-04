@@ -25,6 +25,8 @@ if not defined repo_link (
     echo Failed to create the GitHub repository.
     exit /b 1
 )
+//check if directory exists
+
 
 if not exist "%local_folder%" (
     rem Create a local folder

@@ -10,7 +10,7 @@ node repoinitiator.js
 ```
 
 > **Note:**
-Keep in mind that to execute the project locally one has to bin in the `/bin folder`
+Keep in mind that to execute the project locally one has to be in in the `/bin folder`
 
 ## Pull Request
 
