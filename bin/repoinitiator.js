@@ -90,6 +90,7 @@ program
       const shell_path = path.join(import.meta.dirname, "../scripts/shell/index.sh");
       command = `${shell_path} "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${local_repo_dir}"`;
     } else {
+      console.log(import.meta.dirname);
       const batch_paths = path.join(import.meta.dirname, "../scripts/batch/index.bat");
       command = `"${batch_paths}" "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${local_repo_dir}"`;
     }
