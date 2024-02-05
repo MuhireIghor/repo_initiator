@@ -74,10 +74,10 @@ program
         message: "Enter the directory for the repository: ",
       },
       {
-        type:"checkbox",
-        name:"isRepoPrivate",
-        message:' Is the repo private',
-        choices: ["false","true"
+        type: "checkbox",
+        name: "isRepoPrivate",
+        message: ' Is the repo private',
+        choices: ["false", "true"
         ],
       }
     ]);
@@ -91,8 +91,9 @@ program
       command = `${shell_path} "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${local_repo_dir}"`;
     } else {
       console.log(import.meta.dirname);
-      const batch_paths = path.join(import.meta.dirname, "../scripts/batch/index.bat");
-      command = `"${batch_paths}" "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${local_repo_dir}"`;
+      const appDataPath = process.env.APPDATA || (process.env.USERPROFILE ? path.join(process.env.USERPROFILE, "AppData", "Roaming", "npm", "node_modules", "repoinitiator") : null);
+      const batch_path = path.join(appDataPath, "../scripts/batch/index.bat");
+      command = `"${batch_path}" "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${local_repo_dir}"`;
     }
 
     exec(command, function (err, stdout, stderr) {
