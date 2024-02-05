@@ -4,6 +4,7 @@ githubUsername=$1
 githubPersonalAccessToken=$2
 repositoryName=$3
 projectDirectory=$4
+isRepoPrivate=$5
 
 repo_Initiator() {
     # Local folder information
@@ -20,7 +21,7 @@ repo_Initiator() {
         -H "Authorization: Bearer $githubPersonalAccessToken" \
         -H "X-GitHub-Api-Version: 2022-11-28" \
         "$github_api_url" \
-        -d "{\"name\": \"$repositoryName\"}")
+        -d "{\"name\": \"$repositoryName\",\"private\": \"$isRepoPrivate\"}")
 
     repo_link="https://github.com/$githubUsername/$repositoryName.git"
 
@@ -49,4 +50,4 @@ repo_Initiator() {
     echo "Task completed successfully."
 }
 
-repo_Initiator "$githubUsername" "$githubPersonalAccessToken" "$repositoryName" "$projectDirectory"
+repo_Initiator "$githubUsername" "$githubPersonalAccessToken" "$repositoryName" "$projectDirectory" "$isRepoPrivate"
