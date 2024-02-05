@@ -7,6 +7,7 @@ set projectDirectory=%4
 set isRepoPrivate=%5
 
 call :repo_Initiator
+exit /b 0
 
 :repo_Initiator
 REM Local folder information
@@ -17,7 +18,7 @@ set "github_api_url=https://api.github.com/user/repos"
 
 REM Create a new repository on GitHub
 echo "Creating a new repository on GitHub..."
-curl -L -X POST -H "Accept: application/vnd.github+json" -H "Authorization: Bearer %githubPersonalAccessToken%" -H "X-GitHub-Api-Version: 2022-11-28" "%github_api_url%" -d "{\"name\": \"%repositoryName\",\"private\": \"%isRepoPrivate%\"}"
+curl -L -X POST -H "Accept: application/vnd.github+json" -H "Authorization: Bearer %githubPersonalAccessToken%" -H "X-GitHub-Api-Version: 2022-11-28" "%github_api_url%" -d "{\"name\": \"%repositoryName\",\"private\": \"%isRepoPrivate\"}"
 
 set "repo_link=https://github.com/%githubUsername%/%repositoryName%.git"
 

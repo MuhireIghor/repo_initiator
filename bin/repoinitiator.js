@@ -91,7 +91,7 @@ program
       command = `${shell_path} "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${local_repo_dir}"`;
     } else {
       const batch_paths = path.join(import.meta.dirname, "../scripts/batch/index.bat");
-      command = `${batch_paths} "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${local_repo_dir}"`;
+      command = `"${batch_paths}" "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${local_repo_dir}"`;
     }
 
     exec(command, function (err, stdout, stderr) {
