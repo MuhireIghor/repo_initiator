@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+supressWarnings();
 import { exec } from "child_process";
 import boxen from "boxen";
 import inquirer from "inquirer";
@@ -10,6 +10,7 @@ import chalk from "chalk";
 import { logMessage, logError } from "../lib/log.js";
 import { getConfigDir } from "../lib/config_dir.js";
 import path from "path";
+import { supressWarnings } from "../lib/suppress_warning.js";
 
 program
   .name("repoinitiator")
@@ -72,6 +73,13 @@ program
         name: "directory",
         message: "Enter the directory for the repository: ",
       },
+      {
+        type:"checkbox",
+        name:"isRepoPrivate",
+        message:' Is the repo private',
+        choices: ["false","true"o
+        ],
+      }
     ]);
 
     const local_repo_dir = path.join(process.cwd(), answers.directory);
@@ -80,18 +88,18 @@ program
 
     if (process.platform == "linux") {
       const shell_path = path.join(import.meta.dirname, "../scripts/shell/index.sh");
-      const batch_path = path.join(import.meta.dirname, "../scripts/batch/index.bat");
       command = `${shell_path} "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${local_repo_dir}"`;
     } else {
-      command = `${batch_path} "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${local_repo_dir}"`;
+      const batch_paths = path.join(import.meta.dirname, "../scripts/batch/index.bat");
+      command = `${batch_paths} "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${local_repo_dir}"`;
     }
- 
+
     exec(command, function (err, stdout, stderr) {
-      
+
       if (err) {
         console.error("Error executing shell script:", err);
         return;
-      } 
+      }
       console.log(stdout);
       console.log(
         boxen("Made with love by <MuhireIghor />", {
