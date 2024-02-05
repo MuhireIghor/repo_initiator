@@ -86,10 +86,15 @@ program
 
     let command;
 
-    if (process.platform == "linux" || process.platform == 'darwin') {
+    if (process.platform == "linux" ) {
       const shell_path = path.join(import.meta.dirname, "../scripts/shell/index.sh");
       command = `${shell_path} "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${local_repo_dir}"`;
-    } else {
+    } 
+    else if (process.platform == "darwin"){
+      const shell_path = path.join("/usr/local/lib/node_modules",".repoinitiator/scripts/shell/index.sh");
+      command = `${shell_path} "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${local_repo_dir}"`;
+    }
+    else {
       console.log(import.meta.dirname);
       const appDataPath =(process.env.USERPROFILE ? path.join(process.env.USERPROFILE, "AppData", "Roaming", "npm", "node_modules", "repoinitiator") : null) || (process.env.APPDATA?path.join(process.env.APPDATA, "npm","node_modules","repoinitiator"):null);
       const batch_path = path.join(appDataPath, "./scripts/batch/index.bat");
