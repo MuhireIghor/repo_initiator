@@ -1,5 +1,8 @@
 #!/usr/bin/env node
+
+// Ignore Node warnings
 supressWarnings();
+
 import { exec } from "child_process";
 import boxen from "boxen";
 import inquirer from "inquirer";
@@ -27,6 +30,15 @@ program
   .command("config")
   .description("Configure repoinitiator locally")
   .action(async () => {
+
+    // Check if Git is installed
+    exec('git --version', (error, stdout, stderr) => {
+      if (error) {
+        logError(chalk.red.bold("Git is not installed on your machine. Please install Git and try again."));
+        return;
+      }
+    });
+
     const config_dir = getConfigDir();
     if (existsSync(config_dir)) {
       logMessage(chalk.redBright.bold("Configurations already exists"));
@@ -119,5 +131,6 @@ program
       );
     });
   });
+  
 
 program.parse();
