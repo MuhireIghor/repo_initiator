@@ -92,7 +92,7 @@ program
     } else {
       console.log(import.meta.dirname);
       const appDataPath =(process.env.USERPROFILE ? path.join(process.env.USERPROFILE, "AppData", "Roaming", "npm", "node_modules", "repoinitiator") : null) || (process.env.APPDATA?path.join(process.env.APPDATA, "npm","node_modules","repoinitiator"):null);
-      const batch_path = path.join(appDataPath, "../scripts/batch/index.bat");
+      const batch_path = path.join(appDataPath, "./scripts/batch/index.bat");
       command = `"${batch_path}" "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${local_repo_dir}"`;
     }
 
