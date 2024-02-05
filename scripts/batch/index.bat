@@ -21,7 +21,6 @@ echo "Creating a new repository on GitHub..."
 curl -L -X POST -H "Accept: application/vnd.github+json" -H "Authorization: Bearer %githubPersonalAccessToken%" -H "X-GitHub-Api-Version: 2022-11-28" "%github_api_url%" -d "{\"name\": \"%repositoryName\",\"private\": \"%isRepoPrivate\"}"
 
 set "repo_link=https://github.com/%githubUsername%/%repositoryName%.git"
-set repo_link=!repo_link:"=%
 
 
 REM Check if the repository creation was successful
