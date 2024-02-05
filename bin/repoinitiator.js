@@ -86,7 +86,7 @@ program
 
     let command;
 
-    if (process.platform == "linux") {
+    if (process.platform == "linux" || process.platform == 'darwin') {
       const shell_path = path.join(import.meta.dirname, "../scripts/shell/index.sh");
       command = `${shell_path} "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${local_repo_dir}"`;
     } else {
