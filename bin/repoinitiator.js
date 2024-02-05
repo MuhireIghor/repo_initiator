@@ -77,7 +77,7 @@ program
         type:"checkbox",
         name:"isRepoPrivate",
         message:' Is the repo private',
-        choices: ["false","true"o
+        choices: ["false","true"
         ],
       }
     ]);
