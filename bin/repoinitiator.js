@@ -74,11 +74,15 @@ program
         message: "Enter the directory for the repository: ",
       },
       {
-        type: "checkbox",
+        type: "confirm",
         name: "isRepoPrivate",
         message: ' Is the repo private',
-        choices: ["false", "true"
-        ],
+       
+      },{
+        type:"input",
+        name: "repoDescription",
+        message: "Enter the repository description: ",
+        default: "A new repository by @repoinitiator"
       }
     ]);
 
@@ -86,19 +90,19 @@ program
 
     let command;
 
-    if (process.platform == "linux" ) {
+    if (process.platform == "linux") {
       const shell_path = path.join(import.meta.dirname, "../scripts/shell/index.sh");
-      command = `${shell_path} "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${local_repo_dir}"`;
-    } 
-    else if (process.platform == "darwin"){
-      const shell_path = path.join("/usr/local/lib/node_modules",".repoinitiator/scripts/shell/index.sh");
-      command = `${shell_path} "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${local_repo_dir}"`;
+      command = `${shell_path} "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${local_repo_dir}" "${answers.isRepoPrivate}" "${answers.repoDescription}"`;
+    }
+    else if (process.platform == "darwin") {
+      const shell_path = path.join("/usr/local/lib/node_modules", ".repoinitiator/scripts/shell/index.sh");
+      command = `${shell_path} "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${local_repo_dir}" "${answers.isRepoPrivate}"`;
     }
     else {
       console.log(import.meta.dirname);
-      const appDataPath =(process.env.USERPROFILE ? path.join(process.env.USERPROFILE, "AppData", "Roaming", "npm", "node_modules", "repoinitiator") : null) || (process.env.APPDATA?path.join(process.env.APPDATA, "npm","node_modules","repoinitiator"):null);
+      const appDataPath = (process.env.USERPROFILE ? path.join(process.env.USERPROFILE, "AppData", "Roaming", "npm", "node_modules", "repoinitiator") : null) || (process.env.APPDATA ? path.join(process.env.APPDATA, "npm", "node_modules", "repoinitiator") : null);
       const batch_path = path.join(appDataPath, "./scripts/batch/index.bat");
-      command = `"${batch_path}" "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${local_repo_dir}"`;
+      command = `"${batch_path}" "${githubUsername}" "${githubPersonalAccessToken}" "${repositoryName}" "${local_repo_dir}" "${answers.isRepoPrivate}"`;
     }
 
     exec(command, function (err, stdout, stderr) {
