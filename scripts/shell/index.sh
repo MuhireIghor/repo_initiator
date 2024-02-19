@@ -5,7 +5,7 @@ githubPersonalAccessToken=$2
 repositoryName=$3
 projectDirectory=$4
 isRepoPrivate=$5
-
+projDescription=$6
 repo_Initiator() {
     # Local folder information
     local_folder="$projectDirectory"
@@ -15,13 +15,15 @@ repo_Initiator() {
 
     # Create a new repository on GitHub
     echo "Creating a new repository on GitHub..."
+  
     response=$(curl -L \
         -X POST \
         -H "Accept: application/vnd.github+json" \
         -H "Authorization: Bearer $githubPersonalAccessToken" \
         -H "X-GitHub-Api-Version: 2022-11-28" \
         "$github_api_url" \
-        -d "{\"name\": \"$repositoryName\",\"private\": \"$isRepoPrivate\"}")
+        -d "{\"name\": \"$repositoryName\",\"description\":\"$projDescription\",\"private\":$isRepoPrivate}")
+  
 
     repo_link="https://github.com/$githubUsername/$repositoryName.git"
 
@@ -50,4 +52,4 @@ repo_Initiator() {
     echo "Task completed successfully."
 }
 
-repo_Initiator "$githubUsername" "$githubPersonalAccessToken" "$repositoryName" "$projectDirectory" "$isRepoPrivate"
+repo_Initiator "$githubUsername" "$githubPersonalAccessToken" "$repositoryName" "$projectDirectory" "$isRepoPrivate" "$projDescription"
