@@ -14,7 +14,7 @@ npm i -g repoinitiator
 
 To configure ```repoinitiator``` locally, run this command:
 
-```shell
+```ts
 repoinitiator config
 ```
 
